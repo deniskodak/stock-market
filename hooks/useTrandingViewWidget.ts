@@ -10,7 +10,7 @@ const useTradingViewWidget = ({ config, height, scriptScr }: useTradingViewWidge
     () => {
       const containerCurrent = container.current;
       if (!containerCurrent) return;
-      if (containerCurrent.dataset.loaded) return;
+      if (containerCurrent.dataset.loaded === "true") return;
 
       containerCurrent.innerHTML = `<div class="tradingview-widget-container__widget" style="width: 100%; height: ${height}px"></div>`
       const script = document.createElement("script");
