@@ -31,7 +31,6 @@ const SelectField = <T extends FieldValues>({
         control={control}
         render={({ field }) => (
           <Select
-            name={name}
             value={field.value}
             onValueChange={field.onChange}
           >

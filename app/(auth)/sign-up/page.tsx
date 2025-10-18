@@ -14,7 +14,6 @@ import {
   PREFERRED_INDUSTRIES,
   RISK_TOLERANCE_OPTIONS,
 } from "@/lib/constants/auth";
-import { Select } from "@radix-ui/react-select";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 const SignUpPage = () => {
@@ -35,7 +34,7 @@ const SignUpPage = () => {
     },
     mode: "onBlur",
   });
-  const onSubmit: SubmitHandler<SignUpFormData> = async (data) => {
+  const onMockSubmit: SubmitHandler<SignUpFormData> = async (data) => {
     try {
       console.log(data);
     } catch (error) {
@@ -51,7 +50,8 @@ const SignUpPage = () => {
       <form
         className="space-y-5"
         aria-labelledby="signup-title"
-        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+        onSubmit={handleSubmit(onMockSubmit)}
       >
         <InputField
           name="fullName"
@@ -69,6 +69,8 @@ const SignUpPage = () => {
           placeholder="contacts@example.com"
           register={register}
           error={errors.email}
+          autoComplete="email"
+          type="email"
           required
           validation={{
             required: "Email is required",
@@ -88,6 +90,7 @@ const SignUpPage = () => {
           name="password"
           label="Password"
           placeholder="Create a strong password"
+          autoComplete="current-password"
           register={register}
           error={errors.password}
           type="password"
@@ -97,11 +100,7 @@ const SignUpPage = () => {
             minLength: {
               value: 8,
               message: "Password must be at least 8 characters long",
-            },
-            pattern: {
-              value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-              message: "Password must contain letters and numbers",
-            },
+            }
           }}
         />
 

@@ -1,12 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FunctionComponent } from "react";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
-const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
+const Layout = ({ children }: LayoutProps) => {
   const dummyStars = Array.from({ length: 5 }, (_, i) => i < 4);
   return (
     <main className="auth-layout">
@@ -33,11 +32,17 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
               <cite className="auth-testimonial-author">John D.</cite>
               <p className="max-md:text-xs text-gray-500">Retail investor</p>
             </div>
-            <div className="flex items-center gap-0.5">
+
+            <div
+              role="img"
+              aria-label="Rated 4 of 5"
+              className="flex items-center gap-0.5"
+            >
               {dummyStars.map((filled, index) => (
                 <Image
                   src={"/assets/icons/star.svg"}
-                  alt="Rating start"
+                  alt=""
+                  aria-hidden="true"
                   width={20}
                   height={20}
                   className="w-5 h-5"
@@ -52,7 +57,7 @@ const Layout: FunctionComponent<LayoutProps> = ({ children }) => {
             src={"/assets/images/dashboard.png"}
             width={1440}
             height={1150}
-            className="auth-dashboard-preview absolute 0"
+            className="auth-dashboard-preview absolute inset-0"
             alt="Dashboard preview"
           />
         </div>

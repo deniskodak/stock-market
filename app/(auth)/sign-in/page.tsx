@@ -18,7 +18,7 @@ const SignInPage = () => {
     },
     mode: "onBlur",
   });
-  const onSubmit: SubmitHandler<SignInFormData> = async (data) => {
+  const onMockSubmit: SubmitHandler<SignInFormData> = async (data) => {
     try {
       console.log(data);
     } catch (error) {
@@ -29,12 +29,13 @@ const SignInPage = () => {
   return (
     <>
       <h1 id="signin-title" className="form-title">
-        Log In Your Account
+        Log in to your account
       </h1>
       <form
         className="space-y-5"
         aria-labelledby="signin-title"
-        onSubmit={handleSubmit(onSubmit)}
+        noValidate
+        onSubmit={handleSubmit(onMockSubmit)}
       >
         <InputField
           name="email"
@@ -42,6 +43,8 @@ const SignInPage = () => {
           placeholder="contacts@example.com"
           register={register}
           error={errors.email}
+          autoComplete="email"
+          type="email"
           required
           validation={{
             required: "Email is required",
@@ -52,7 +55,8 @@ const SignInPage = () => {
         <InputField
           name="password"
           label="Password"
-          placeholder="Create a strong password"
+          placeholder="Enter your password"
+          autoComplete="current-password"
           register={register}
           error={errors.password}
           type="password"
@@ -62,10 +66,6 @@ const SignInPage = () => {
             minLength: {
               value: 8,
               message: "Password must be at least 8 characters long",
-            },
-            pattern: {
-              value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-              message: "Password must contain letters and numbers",
             },
           }}
         />
