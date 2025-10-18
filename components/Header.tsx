@@ -13,7 +13,7 @@ const Header: FunctionComponent = () => {
   return (
     <header className="sticky top-0 header">
       <div className="container header-wrapper">
-        <Link href="/">
+        <Link href="/" aria-label="Go to homepage">
           <Image
             className="h-8 w-auto"
             src="/assets/images/logo.png"
