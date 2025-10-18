@@ -9,21 +9,21 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import UserAvatar from "./UserAvatar";
 import { LogOut } from "lucide-react";
 import NavItems from "./NavItems";
 
-interface UserDropdownProps {}
-
-const UserDropdown: FunctionComponent<UserDropdownProps> = () => {
-  const router = useRouter();
-  const userData = {
-    name: "John",
-    email: "signalist.contact@gmail.com",
+interface UserDropdownProps {
+  userData: {
+    name: string;
+    email: string;
   };
+};
+
+const UserDropdown: FunctionComponent<UserDropdownProps> = ({ userData }) => {
+  const router = useRouter();
 
   const handleSignOut = () => {
     router.push("/sign-in");

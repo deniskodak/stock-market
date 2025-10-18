@@ -5,15 +5,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FunctionComponent } from "react";
 
-interface NavItemsProps {}
-
-const NavItems: FunctionComponent<NavItemsProps> = () => {
+const NavItems: FunctionComponent = () => {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/';
 
-    return pathname.startsWith(href);
+    return pathname === href || pathname.startsWith(href + '/');
   }
 
   return (
