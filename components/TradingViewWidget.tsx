@@ -39,11 +39,11 @@ const TradingViewWidget: FunctionComponent<TradingViewWidgetProps> = ({
         ></div>
         <div className="tradingview-widget-copyright">
           <a
-            href="https://www.tradingview.com/symbols/NASDAQ-AAPL/"
++           href="https://www.tradingview.com/"
             rel="noopener nofollow"
             target="_blank"
           >
-            <span className="blue-text">AAPL stock chart</span>
+            <span className="blue-text">Track all markets</span>
           </a>
           <span className="trademark"> by TradingView</span>
         </div>

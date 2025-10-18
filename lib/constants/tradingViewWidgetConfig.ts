@@ -9,7 +9,7 @@ export const WIDGET_URLS_MAP = {
 // TradingView Charts
 export const MARKET_OVERVIEW_WIDGET_CONFIG = {
   colorTheme: 'dark', // dark mode
-  dateRange: '1m', // last 1 month
+  dateRange: '1d', // last 1 d
   locale: 'en', // language
   largeChartUrl: '', // link to a large chart if needed
   isTransparent: true, // makes background transparent
