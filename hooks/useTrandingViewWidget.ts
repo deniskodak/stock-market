@@ -16,7 +16,7 @@ const useTradingViewWidget = ({ config, height, scriptScr }: useTradingViewWidge
       const script = document.createElement("script");
       script.src = scriptScr;
       script.async = true;
-      script.innerHTML = JSON.stringify(config);
+      script.textContent = JSON.stringify(config);
       containerCurrent.appendChild(script);
       containerCurrent.dataset.loaded = "true";
 

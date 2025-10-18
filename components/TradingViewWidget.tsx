@@ -14,7 +14,7 @@ const TradingViewWidget: FunctionComponent<TradingViewWidgetProps> = ({
   hideLabel = false,
 }) => {
   const container = useTradingViewWidget({
-    config,
+    config: { ...config, height },
     scriptScr,
     height,
   });
@@ -39,7 +39,7 @@ const TradingViewWidget: FunctionComponent<TradingViewWidgetProps> = ({
         ></div>
         <div className="tradingview-widget-copyright">
           <a
-+           href="https://www.tradingview.com/"
+            href="https://www.tradingview.com/"
             rel="noopener nofollow"
             target="_blank"
           >
