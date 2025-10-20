@@ -14,18 +14,14 @@ import { Button } from "./ui/button";
 import UserAvatar from "./UserAvatar";
 import { LogOut } from "lucide-react";
 import NavItems from "./NavItems";
+import { User } from "@/interfaces/auth.interface";
+import { signOut } from "@/lib/actions/auth.actions";
 
-interface UserDropdownProps {
-  userData: {
-    name: string;
-    email: string;
-  };
-};
-
-const UserDropdown: FunctionComponent<UserDropdownProps> = ({ userData }) => {
+const UserDropdown: FunctionComponent<User> = ({ email, name }) => {
   const router = useRouter();
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
+    await signOut();
     router.push("/sign-in");
   };
 
@@ -36,11 +32,11 @@ const UserDropdown: FunctionComponent<UserDropdownProps> = ({ userData }) => {
           variant="ghost"
           className="flex items-center gap-3 text-gray-400 hover:text-yellow-500"
         >
-          <UserAvatar customClassName="h-8 w-8" userName={userData.name} />
+          <UserAvatar customClassName="h-8 w-8" userName={name} />
 
           <div className="hidden md:flex flex-col items-start">
             <span className="text-base font-medium text-gray-400">
-              {userData.name}
+              {name}
             </span>
           </div>
         </Button>
@@ -48,13 +44,13 @@ const UserDropdown: FunctionComponent<UserDropdownProps> = ({ userData }) => {
       <DropdownMenuContent>
         <DropdownMenuLabel>
           <div className="flex relative items-center gap-3 p-2">
-            <UserAvatar customClassName="h-10 w-10" userName={userData.name} />
+            <UserAvatar customClassName="h-10 w-10" userName={name} />
             <div className="flex flex-col">
               <span className="text-base font-medium text-gray-400">
-                {userData.name}
+                {name}
               </span>
               <span className="text-sm font-medium text-gray-500">
-                {userData.email}
+                {email}
               </span>
             </div>
           </div>

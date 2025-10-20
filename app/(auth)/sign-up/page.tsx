@@ -6,6 +6,7 @@ import InputField from "@/components/forms/InputField";
 import SelectField from "@/components/forms/SelectField";
 import { Button } from "@/components/ui/button";
 import { SignUpFormData } from "@/interfaces/auth.interface";
+import { signUpWithEmail } from "@/lib/actions/auth.actions";
 import {
   DEFAULT_GOAL,
   DEFAULT_INDUSTRY,
@@ -14,9 +15,13 @@ import {
   PREFERRED_INDUSTRIES,
   RISK_TOLERANCE_OPTIONS,
 } from "@/lib/constants/auth";
+import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const SignUpPage = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -34,11 +39,22 @@ const SignUpPage = () => {
     },
     mode: "onBlur",
   });
-  const onMockSubmit: SubmitHandler<SignUpFormData> = async (data) => {
+  const onSubmit: SubmitHandler<SignUpFormData> = async (data) => {
     try {
-      console.log(data);
+      const result = await signUpWithEmail(data);
+      if (result.success) {
+        router.push("/");
+        toast.success(`Welcome ${data.fullName}!`);
+      } else {
+        throw new Error(result.message)
+      }
     } catch (error) {
-      console.error("Sign up error:", error);
+      toast.error(`Sign up failed. Please try again.`, {
+        description:
+          error instanceof Error
+            ? error.message
+            : "Failed to create an account",
+      });
     }
   };
 
@@ -51,7 +67,7 @@ const SignUpPage = () => {
         className="space-y-5"
         aria-labelledby="signup-title"
         noValidate
-        onSubmit={handleSubmit(onMockSubmit)}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <InputField
           name="fullName"
@@ -100,7 +116,7 @@ const SignUpPage = () => {
             minLength: {
               value: 8,
               message: "Password must be at least 8 characters long",
-            }
+            },
           }}
         />
 
@@ -144,7 +160,11 @@ const SignUpPage = () => {
             : "start your investment journey"}
         </Button>
 
-        <FooterLink href="/sign-in" text="Already have an account?" linkText="Log in" />
+        <FooterLink
+          href="/sign-in"
+          text="Already have an account?"
+          linkText="Log in"
+        />
       </form>
     </>
   );

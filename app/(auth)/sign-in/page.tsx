@@ -4,9 +4,14 @@ import FooterLink from "@/components/forms/FooterLink";
 import InputField from "@/components/forms/InputField";
 import { Button } from "@/components/ui/button";
 import { SignInFormData } from "@/interfaces/auth.interface";
+import { signInWithEmailAndPassword } from "@/lib/actions/auth.actions";
+import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const SignInPage = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -18,11 +23,26 @@ const SignInPage = () => {
     },
     mode: "onBlur",
   });
-  const onMockSubmit: SubmitHandler<SignInFormData> = async (data) => {
+  const onSubmit: SubmitHandler<SignInFormData> = async (data) => {
     try {
-      console.log(data);
+      const result = await signInWithEmailAndPassword({
+        email: data.email,
+        password: data.password,
+      });
+
+      if (result.success) {
+        router.push("/");
+        toast.success(`Welcome ${result.data?.user.name}!`);
+      } else {
+        throw new Error(result.message);
+      }
     } catch (error) {
-      console.error("Sign up error:", error);
+      toast.error(`Log in failed. Please try again.`, {
+        description:
+          error instanceof Error
+            ? error.message
+            : "Failed to log in into account",
+      });
     }
   };
 
@@ -35,7 +55,7 @@ const SignInPage = () => {
         className="space-y-5"
         aria-labelledby="signin-title"
         noValidate
-        onSubmit={handleSubmit(onMockSubmit)}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <InputField
           name="email"

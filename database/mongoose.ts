@@ -15,7 +15,7 @@ if (!cache) {
   cache = global.mongooseCache = { conn: undefined, promise: undefined };
 };
 
-const connectToDatabase = async () => {
+export const connectToDatabase = async () => {
   if (!MONGO_DB_URI) throw new Error('Please define the MONGO_DB_URI environment variable');
 
   if (cache.conn) return cache.conn;
@@ -31,6 +31,6 @@ const connectToDatabase = async () => {
     throw error;
   }
 
-  console.log('Connected to MongoDB', 'MODE: ' + process.env.NODE_ENV);
+  console.log(`Connected to database ${process.env.NODE_ENV} - ${MONGO_DB_URI}`);
   return cache.conn;
 }
