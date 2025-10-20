@@ -32,7 +32,10 @@ const SignInPage = () => {
 
       if (result.success) {
         router.push("/");
-        toast.success(`Welcome ${result.data?.user.name}!`);
+        router.refresh();
+        const displayName =
+          result.data?.user?.name ?? result.data?.user?.email ?? "there";
+        toast.success(`Welcome ${displayName}!`);
       } else {
         throw new Error(result.message);
       }

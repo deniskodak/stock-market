@@ -23,7 +23,12 @@ export const signUpWithEmail = async ({ email, password, fullName: name, ...rest
     return { success: true, data: res };
   } catch (error) {
     console.error("Error during sign-up:", error);
-    return { success: false, message: "An error occurred during sign-up." };
+    if (error instanceof Error) {
+      if (error.message.includes("already exists")) {
+        return { success: false, message: "This email is already registered." };
+      }
+    }
+    return { success: false, message: "Unable to sign up. Please try again." };
   }
 }
 

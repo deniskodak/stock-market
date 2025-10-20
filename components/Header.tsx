@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import NavItems from "./NavItems";
 import UserDropdown from "./UserDropdown";
-import { User } from "@/interfaces/auth.interface";
+import { HeaderUser } from "@/interfaces/auth.interface";
 
-const Header = ({ user }: { user: User }) => {
+const Header = ({ user }: { user: HeaderUser }) => {
   return (
     <header className="sticky top-0 header">
       <div className="container header-wrapper">
@@ -20,7 +20,7 @@ const Header = ({ user }: { user: User }) => {
         <nav aria-label="Main" className="hidden sm:block">
           <NavItems />
         </nav>
-        <UserDropdown {...user} />
+        <UserDropdown name={user.name} email={user.email} />
       </div>
     </header>
   );

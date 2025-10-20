@@ -1,6 +1,5 @@
 "use client";
 
-import { FunctionComponent } from "react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,10 +13,10 @@ import { Button } from "./ui/button";
 import UserAvatar from "./UserAvatar";
 import { LogOut } from "lucide-react";
 import NavItems from "./NavItems";
-import { User } from "@/interfaces/auth.interface";
+import { HeaderUser } from "@/interfaces/auth.interface";
 import { signOut } from "@/lib/actions/auth.actions";
 
-const UserDropdown: FunctionComponent<User> = ({ email, name }) => {
+const UserDropdown = ({ email, name }: HeaderUser) => {
   const router = useRouter();
 
   const handleSignOut = async () => {

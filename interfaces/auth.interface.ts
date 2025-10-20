@@ -56,3 +56,5 @@ export type User = {
   name: string;
   email: string;
 };
+
+export type HeaderUser = Pick<User, 'name' | 'email'>;
