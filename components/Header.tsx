@@ -1,15 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FunctionComponent } from "react";
 import NavItems from "./NavItems";
 import UserDropdown from "./UserDropdown";
+import { HeaderUser } from "@/interfaces/auth.interface";
 
-const Header: FunctionComponent = () => {
-  const mockUserData = {
-    name: "John",
-    email: "signalist.contact@gmail.com",
-  };
-
+const Header = ({ user }: { user: HeaderUser }) => {
   return (
     <header className="sticky top-0 header">
       <div className="container header-wrapper">
@@ -25,7 +20,7 @@ const Header: FunctionComponent = () => {
         <nav aria-label="Main" className="hidden sm:block">
           <NavItems />
         </nav>
-        <UserDropdown userData={mockUserData} />
+        <UserDropdown name={user.name} email={user.email} />
       </div>
     </header>
   );

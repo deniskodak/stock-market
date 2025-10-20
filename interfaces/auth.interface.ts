@@ -50,3 +50,11 @@ export type FooterLinkProps = {
   linkText: string;
   href: string;
 };
+
+export type User = {
+  id: string;
+  name: string;
+  email: string;
+};
+
+export type HeaderUser = Pick<User, 'name' | 'email'>;
