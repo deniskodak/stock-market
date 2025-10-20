@@ -1,12 +1,10 @@
-import { FooterLinkProps } from "@/interfaces/auth.interface";
 import Link from "next/link";
-import { FunctionComponent } from "react";
 
-const FooterLink: FunctionComponent<FooterLinkProps> = ({
+const FooterLink = ({
   text,
   linkText,
   href,
-}) => {
+}: FooterLinkProps) => {
   return (
     <div className="text-center pt-4">
       <p className="text-sm text-gray-500">

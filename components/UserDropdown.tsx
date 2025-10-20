@@ -13,7 +13,6 @@ import { Button } from "./ui/button";
 import UserAvatar from "./UserAvatar";
 import { LogOut } from "lucide-react";
 import NavItems from "./NavItems";
-import { HeaderUser } from "@/interfaces/auth.interface";
 import { signOut } from "@/lib/actions/auth.actions";
 
 const UserDropdown = ({ email, name }: HeaderUser) => {

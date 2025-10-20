@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import NavItems from "./NavItems";
 import UserDropdown from "./UserDropdown";
-import { HeaderUser } from "@/interfaces/auth.interface";
 
 const Header = ({ user }: { user: HeaderUser }) => {
   return (

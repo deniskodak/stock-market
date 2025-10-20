@@ -3,9 +3,8 @@
 import { NAV_ITEMS } from "@/lib/constants";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FunctionComponent } from "react";
 
-const NavItems: FunctionComponent = () => {
+const NavItems = () => {
   const pathname = usePathname();
 
   const isActive = (href: string) => {

@@ -1,6 +1,5 @@
 'use client';
 
-import { useTradingViewWidgetProps } from "@/interfaces/tradingViewWidget.interface";
 import { useEffect, useRef } from "react";
 
 const useTradingViewWidget = ({ config, height, scriptScr }: useTradingViewWidgetProps) => {

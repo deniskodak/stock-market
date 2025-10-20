@@ -2,7 +2,6 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { cn } from "@/lib/utils";
 import { FieldValues } from "react-hook-form";
-import { InputFieldProps } from "@/interfaces/auth.interface";
 
 const InputField = <T extends FieldValues>({
   name,
