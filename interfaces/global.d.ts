@@ -69,9 +69,9 @@ declare global {
     label: string;
     placeholder: string;
     type?: string;
-    register: UseFormRegister;
+    register: UseFormRegister<T>;
     error?: FieldError;
-    validation?: RegisterOptions;
+    validation?: RegisterOptions<T, Path<T>>;
     disabled?: boolean;
     value?: string;
   };
