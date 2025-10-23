@@ -1,5 +1,6 @@
-import { FieldValues } from "react-hook-form";
-import { type Document } from 'mongodb';
+import type { FieldValues, Path, Control, FieldError, UseFormRegister, RegisterOptions } from "react-hook-form";
+import type React from "react";
+import { type Document } from "mongodb";
 
 declare global {
   // --------------------------------------- TRADING VIEW WIDGETS
