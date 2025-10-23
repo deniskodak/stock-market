@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import { WELCOME_EMAIL_TEMPLATE } from './templates';
+import { NEWS_SUMMARY_EMAIL_TEMPLATE, WELCOME_EMAIL_TEMPLATE } from './templates';
 
 if (!process.env.NODEMAILER_EMAIL_SERVICE || !process.env.NODEMAILER_EMAIL_USER || !process.env.NODEMAILER_EMAIL_PASS) {
   throw new Error('Nodemailer environment variables are not set properly.');
@@ -26,6 +26,23 @@ export const sendWelcomeEmail = async (email: string, name: string, introText: s
     await transporter.sendMail(mailOptions);
   } catch (error) {
     console.error('Error sending welcome email:', error);
+    throw error;
+  }
+}
+
+  export const sendUserNewsSummaryEmail = async (email: string, date: string, newsContent: string, name: string) => {
+  const htmlTemplate = NEWS_SUMMARY_EMAIL_TEMPLATE.replace('{{date}}', date).replace('{{newsContent}}', newsContent);
+  const mailOptions = {
+    from: `"Signalist News" <${process.env.NODEMAILER_EMAIL_USER}>`,
+    to: email,
+    subject: `📈 Market News Summary Today - ${date}`,
+    text: `Hello ${name}, Stay updated with the latest market news!\n\nBest regards,\nThe Signalist Team`,
+    html: htmlTemplate,
+  };
+  try {
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.error('Error sending news summary email:', error);
     throw error;
   }
 }

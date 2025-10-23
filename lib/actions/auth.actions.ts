@@ -1,7 +1,6 @@
 'use server';
 
 import { auth } from "../better-auth/auth";
-import { SignInFormData, SignUpFormData } from "@/interfaces/auth.interface";
 import { inngest } from '../inngest/client';
 import { INNGEST_EVENTS } from '../inngest/functions';
 import { headers } from "next/headers";

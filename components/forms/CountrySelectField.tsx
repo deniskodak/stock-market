@@ -1,6 +1,5 @@
 "use client";
 
-import { CountrySelectProps } from "@/interfaces/auth.interface";
 import { Controller, FieldValues } from "react-hook-form";
 import { Label } from "../ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";

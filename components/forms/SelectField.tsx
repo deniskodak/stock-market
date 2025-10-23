@@ -7,7 +7,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { SelectFieldProps } from "@/interfaces/auth.interface";
 import { Controller, FieldValues } from "react-hook-form";
 import { Label } from "../ui/label";
 

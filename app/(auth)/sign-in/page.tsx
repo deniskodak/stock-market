@@ -3,7 +3,6 @@
 import FooterLink from "@/components/forms/FooterLink";
 import InputField from "@/components/forms/InputField";
 import { Button } from "@/components/ui/button";
-import { SignInFormData } from "@/interfaces/auth.interface";
 import { signInWithEmailAndPassword } from "@/lib/actions/auth.actions";
 import { useRouter } from "next/navigation";
 import { SubmitHandler, useForm } from "react-hook-form";

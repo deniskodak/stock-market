@@ -1,17 +1,10 @@
-import { FunctionComponent } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
-interface UserAvatarProps {
-  userName: string;
-  userImageSrc?: string;
-  customClassName?: string;
-}
-
-const UserAvatar: FunctionComponent<UserAvatarProps> = ({
+const UserAvatar = ({
   userName,
   userImageSrc,
   customClassName,
-}) => {
+}: UserAvatarProps) => {
   const srcFallback = "https://github.com/shadcn.png";
   const name = userName || "?";
   return (

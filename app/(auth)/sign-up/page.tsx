@@ -5,7 +5,6 @@ import FooterLink from "@/components/forms/FooterLink";
 import InputField from "@/components/forms/InputField";
 import SelectField from "@/components/forms/SelectField";
 import { Button } from "@/components/ui/button";
-import { SignUpFormData } from "@/interfaces/auth.interface";
 import { signUpWithEmail } from "@/lib/actions/auth.actions";
 import {
   DEFAULT_GOAL,
