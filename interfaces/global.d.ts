@@ -1,4 +1,5 @@
 import { FieldValues } from "react-hook-form";
+import { type Document } from 'mongodb';
 
 declare global {
   // --------------------------------------- TRADING VIEW WIDGETS
@@ -14,6 +15,17 @@ declare global {
   type useTradingViewWidgetProps = Pick<TradingViewWidgetProps, 'config' | 'height' | 'scriptScr'>
 
   // --------------------------------------- AUTH CONTRACT & AUTH UI
+  interface DBUser extends Document {
+    _id: string;
+    id: string | null;
+    name: string | null;
+    email: string | null;
+    country: string | null;
+    preferredIndustry: string | null;
+    riskTolerance: string | null;
+    investmentGoals: string | null;
+  }
+
   type User = {
     id: string;
     name: string;
