@@ -97,7 +97,7 @@ declare global {
     href: string;
   };
 
-  type HeaderUser = Pick<User, 'name' | 'email'> & { initialStocks: StockWithWatchlistStatus[] };
+  type HeaderUser = Pick<User, 'name' | 'email'>;
 
   type StockDetailsPageProps = {
     params: Promise<{

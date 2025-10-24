@@ -3,6 +3,7 @@
 import {
   KeyboardEvent as ReactKeyboardEvent,
   useEffect,
+  useId,
   useRef,
   useState,
 } from "react";
@@ -16,14 +17,14 @@ import { Button } from "@/components/ui/button";
 import { Loader2, Star, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { useDebounce } from "@/hooks/useDebounce";
-import { searchStocks } from "@/lib/actions/finnhub.actions";
+import { searchStocksAction as searchStocks } from "@/lib/actions/finnhub.actions";
 
 export default function SearchStock({
   renderAs = "button",
   label = "Add stock",
   initialStocks,
 }: SearchCommandProps) {
-  const uniqueIdRef = useRef<number>(null);
+  const dialogId = useId();
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
@@ -32,10 +33,6 @@ export default function SearchStock({
 
   const isSearchMode = !!searchTerm.trim();
   const displayStocks = isSearchMode ? stocks : stocks?.slice(0, 10);
-
-  useEffect(() => {
-    uniqueIdRef.current = new Date().getMilliseconds();
-  }, []);
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -76,7 +73,7 @@ export default function SearchStock({
 
   const handleTextKeydown = (event: ReactKeyboardEvent<HTMLSpanElement>) => {
     const key = event.key;
-    if (key === "Enter" || key === "Space") setOpen(true);
+    if (key === "Enter" || key === "Spacebar" || key === ' ') setOpen(true);
   };
 
   return (
@@ -86,7 +83,7 @@ export default function SearchStock({
           role="button"
           tabIndex={0}
           aria-haspopup="dialog"
-          aria-controls={"search-dialog-" + uniqueIdRef}
+          aria-controls={"search-dialog-" + dialogId}
           onClick={() => setOpen(true)}
           onKeyDown={handleTextKeydown}
           className="search-text"
@@ -96,7 +93,7 @@ export default function SearchStock({
       ) : (
         <Button
           aria-haspopup="dialog"
-          aria-controls={"search-dialog-" + uniqueIdRef}
+          aria-controls={"search-dialog-" + dialogId}
           onClick={() => setOpen(true)}
           className="search-btn"
         >
@@ -104,7 +101,7 @@ export default function SearchStock({
         </Button>
       )}
       <CommandDialog
-        id={"search-dialog-" + uniqueIdRef}
+        id={"search-dialog-" + dialogId}
         open={open}
         onOpenChange={setOpen}
         className="search-dialog"

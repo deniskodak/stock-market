@@ -190,3 +190,8 @@ export const searchStocks = cache(async (query?: string): Promise<StockWithWatch
     return [];
   }
 });
+
+export async function searchStocksAction(query?: string) {
+  "use server";
+  return searchStocks(query);
+}
