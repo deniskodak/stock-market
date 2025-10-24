@@ -41,6 +41,7 @@ function CommandDialog({
   description?: string
   className?: string
   showCloseButton?: boolean
+  id?: string
 }) {
   return (
     <Dialog {...props}>
