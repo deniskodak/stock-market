@@ -17,10 +17,10 @@ const NavItems = ({ initialStocks }: { initialStocks?: StockWithWatchlistStatus[
   return (
     <ul className="flex flex-col sm:flex-row p-2 gap-3 sm:gap-10 text-md font-medium">
       {NAV_ITEMS.map((item) => {
-        if (item.label === "Search") {
+        if (item.isSearch) {
           return initialStocks ? (
             <li key={item.label}>
-              <SearchStock renderAs="text" label="Search" initialStocks={initialStocks} />
+              <SearchStock renderAs="text" label={item.label} initialStocks={initialStocks} />
             </li>
           ) : null;
         }
